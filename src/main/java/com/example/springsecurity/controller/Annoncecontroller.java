@@ -38,7 +38,7 @@ public class Annoncecontroller {
     public List<Annonce> getvalidation(@PathVariable int validation){
         return annoncesservice.validation(validation);
     }
-/*
+
     @GetMapping("/recherche/{minPrix}/{maxPrix}/{idmarque}/{modele}/{idcategorie}")
     public List<Annonce> rechercheAnnonces(
             @PathVariable double minPrix,
@@ -48,7 +48,7 @@ public class Annoncecontroller {
             @PathVariable int idcategorie) {
         return annoncesservice.recherchemultiple(minPrix, maxPrix, idmarque, modele, idcategorie);
     }
-*/
+
     @PatchMapping("/{id}/vendu")
     public ResponseEntity<String> updateEtat(@PathVariable("id") int annonceId, @RequestParam("newEtat") int newEtat) {
         annoncesservice.updateEtat(annonceId, newEtat);

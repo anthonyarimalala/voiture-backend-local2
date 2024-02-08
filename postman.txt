@@ -1,0 +1,99 @@
+insertion annonces:
+{
+  "idutilisateur": 1,
+  "marque":{
+    "idmarque":1,
+    "marque":""
+  },
+  "modele":"Serie X",
+  "matricule":"0212 TAC",
+  "annee_fabrication": "2004",
+  "detail": "sdfljlj",
+  "prix": 120000000,
+  "categories": [
+    {
+      "idCategorie": 1,
+      "categorie": ""
+    },
+    {
+      "idCategorie": 2,
+      "categorie": ""
+    }
+  ],
+  "imagelinks":[
+    "dqsdq",
+    "vdsfds"
+  ]
+}
+
+
+
+
+
+
+
+INSERT INTO marque (idmarque, marque)
+VALUES (1, 'Toyota'),
+       (2, 'Honda'),
+       (3, 'Ford'),
+       (4, 'BMW'),
+       (5, 'Mercedes-Benz'),
+       (6, 'Audi'),
+       (7, 'Tesla'),
+       (8, 'Chevrolet'),
+       (9, 'Jeep'),
+       (10, 'Volvo');
+
+INSERT INTO categorie (id_categorie, categorie)
+VALUES (1, 'Sport'),
+       (2, 'Hors-piste'),
+       (3, 'Luxe'),
+       (4, '4x4'),
+       (5, 'Compacte'),
+       (6, 'Coupé'),
+       (7, 'Berline'),
+       (8, 'Cabriolet'),
+       (9, 'Monospace'),
+       (10, 'Break');
+
+
+
+
+
+
+if(firstname.length < 3){
+          const alert = await this.alertController.create({
+            header: 'Register error',
+            message: 'Firstname trop court.',
+            buttons: ['OK']
+          });
+          await alert.present();
+          return null;
+        }else if(lastname.length < 3){
+          const alert = await this.alertController.create({
+            header: 'Register error',
+            message: 'Lastname trop court.',
+            buttons: ['OK']
+          });
+          await alert.present();
+          return null;
+
+        }else if(!email.includes('@')){
+          const alert = await this.alertController.create({
+            header: 'Register error',
+            message: 'L\'email n\'est pas valide.',
+            buttons: ['OK']
+          });
+          await alert.present();
+          return null;
+
+        }else if(password !== confirm_password){
+          const alert = await this.alertController.create({
+            header: 'Register error',
+            message: 'Les mots de passes sont pas pareils.',
+            buttons: ['OK']
+          });
+          await alert.present();
+          return null;
+
+        }

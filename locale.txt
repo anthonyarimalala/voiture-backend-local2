@@ -1,0 +1,88 @@
+spring.datasource.url=jdbc:postgresql://localhost:5432/voiture
+spring.datasource.username=postgres
+spring.datasource.password=anthony
+
+spring.datasource.url=jdbc:postgresql://viaduct.proxy.rlwy.net:34019/railway
+spring.datasource.username=postgres
+spring.datasource.password=3ga-32c5AaCdA23fc64dgAaBf3D-B6F-
+
+https://voiture-backend-production.up.railway.app/
+
+ 192.168.43.165
+
+
+
+import { Component, OnInit } from '@angular/core';
+import { MenuController, NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+})
+export class LoginPage implements OnInit {
+
+  utilisateur = {
+    id_utilisateur: "1",
+    nom: "Anthony",
+    prenom: "Johary",
+    email: "anthony@gmail.com",
+    password: "anthony"
+  }
+
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';
+  successMessage: string = '';
+
+  
+
+  constructor(
+    private navCtrl: NavController,
+    private menuCtrl: MenuController,
+    private authService: AuthService
+  ) { }
+
+  ngOnInit() {
+    this.menuCtrl.enable(false);
+  }
+
+  onLogin(){
+
+    const newData = {
+      email: this.email,
+      password: this.password
+    };
+    
+    console.log(this.authService.authenticateDTO(newData));
+
+    // if(this.email !== this.utilisateur.email){
+    //   this.errorMessage = 'L\'email '+this.email + ' n\'existe pas!';
+    // }else if(this.password !== this.utilisateur.password){
+    //   this.errorMessage = 'Mot de passe incorrect!';
+    // }else{
+    //   this.navCtrl.navigateRoot('/mes-annonces');
+    // }
+  }
+
+  redirigerVersRegister(){
+    this.navCtrl.navigateForward('/register');
+  }
+
+}
+
+
+@Bean
+public CorsConfigurationSource corsConfigurationSource() {
+    final CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:8100")); // Remplacez par l'URL de votre frontend
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+    configuration.setAllowedHeaders(Arrays.asList("*"));
+    // Si nécessaire, ajoutez aussi :
+    // configuration.setAllowCredentials(true);
+    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
+}
+
